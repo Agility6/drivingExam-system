@@ -1,0 +1,16 @@
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    username: root
+    password: tang6d
+    url: jdbc:mysql://localhost:3308/jiakao?serverTimezone=GMT%2B8
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+
+mybatis-plus:
+  type-aliases-package: com.t.jk.pojo
+
+
+logging:
+  level:
+    com.t.jk.mapper: debug

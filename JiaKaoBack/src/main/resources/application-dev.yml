@@ -1,0 +1,17 @@
+server:
+  port: 8888
+
+spring:
+  datasource:
+    username: root
+    password: root
+    url: jdbc:mysql://localhost:3308/jiakao?serverTimezone=GMT%2B8
+
+logging:
+  level:
+    com.t.jk.mapper: debug
+
+jk:
+  cfg:
+    cors-origins:
+      - http://localhost:5500
