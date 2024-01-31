@@ -2,6 +2,7 @@ package com.t.jk.controller;
 
 
 
+import com.t.jk.common.exception.CommonException;
 import com.t.jk.common.util.Rs;
 import com.t.jk.pojo.po.DictType;
 import com.t.jk.pojo.query.DictTypeQuery;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/dictTypes")
@@ -35,19 +37,22 @@ public class DictTypeController {
      */
     @PostMapping("/remove")
     public R remove(String id) {
+
         if (service.removeByIds(Arrays.asList(id.split(",")))) {
             return Rs.ok("删除成功");
         } else {
-            return Rs.error("删除失败");
+            throw new CommonException("删除失败");
         }
     }
 
     @PostMapping("/save")
     public R save(DictType dictType) {
+        String name = dictType.getName();
+
         if (service.saveOrUpdate(dictType)) {
           return Rs.ok("保存成功");
         } else {
-            return Rs.error("保存失败");
+            throw new CommonException("保存失败");
         }
     }
 }

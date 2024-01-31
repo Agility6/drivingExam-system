@@ -1,5 +1,7 @@
 package com.t.jk.pojo.result;
 
+import com.t.jk.common.enhance.Jsonable;
+
 import java.util.HashMap;
 
 /**
@@ -10,12 +12,12 @@ import java.util.HashMap;
  * @Create 2024/1/31 16:40
  * @Version: 1.0
  */
-public class R extends HashMap<String, Object> {
+public class R extends HashMap<String, Object> implements Jsonable {
     private static final String K_CODE = "code";
     private static final String K_MSG = "msg";
     private static final String K_DATA = "data";
     private static final int CODE_SUCCESS = 0;
-    private static final int CODE_ERROR_DEFAULT = 400;
+    private static final int CODE_ERROR_DEFAULT = CodeMsg.BAD_REQUEST.getCode();
 
     public R setSuccess(boolean success) {
         return success ? setCode(CODE_SUCCESS) : setCode(CODE_ERROR_DEFAULT);

@@ -1,6 +1,7 @@
 package com.t.jk.controller;
 
 
+import com.t.jk.common.exception.CommonException;
 import com.t.jk.common.util.Rs;
 import com.t.jk.pojo.po.Province;
 import com.t.jk.pojo.query.ProvinceQuery;
@@ -37,7 +38,7 @@ public class ProvinceController {
         if (service.removeByIds(Arrays.asList(id.split(",")))) {
             return Rs.error("删除成功");
         } else {
-            return Rs.error("删除失败");
+            throw new CommonException("删除失败");
         }
     }
 
@@ -46,7 +47,7 @@ public class ProvinceController {
         if (service.saveOrUpdate(province)) {
             return Rs.ok("保存成功");
         } else {
-            return Rs.error("保存失败");
+            throw new CommonException("保存失败");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.t.jk.common.util;
 
+import com.t.jk.common.exception.CommonException;
 import com.t.jk.pojo.query.PageQuery;
 import com.t.jk.pojo.result.R;
 
@@ -17,6 +18,19 @@ public class Rs {
 
     public static R error(String msg) {
         return new R().setSuccess(false).setMsg(msg);
+    }
+
+    public static R error(Throwable t) {
+        // 如果错误类型是CommonException
+        if (t instanceof CommonException) {
+            CommonException e = (CommonException) t;
+            R r = new R();
+            r.setCode(e.getCode());
+            r.setMsg(e.getMessage());
+            return r;
+        } else {
+            return error(t.getMessage());
+        }
     }
 
     public static R ok(PageQuery query) {
