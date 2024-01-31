@@ -22,7 +22,7 @@ public class ProvinceServiceImpl extends ServiceImpl<ProvinceMapper, Province> i
         // 按照id降序
         wrapper.orderByDesc(Province::getId);
 
-        baseMapper.selectPage(new MpPage<Province>(query), wrapper).updateQuery(query);
+        baseMapper.selectPage(new MpPage<Province>(query), wrapper).updateQuery();
     }
 
 }

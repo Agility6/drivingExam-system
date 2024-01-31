@@ -12,15 +12,18 @@ import com.t.jk.pojo.query.PageQuery;
  * @Version: 1.0
  */
 public class MpPage<T> extends Page<T> {
+
+    private PageQuery query;
+
     public MpPage(PageQuery query) {
         super(query.getPage(), query.getSize());
+        this.query = query;
     }
 
     /**
      * 查询完成后更新
-     * @param query
      */
-    public void updateQuery(PageQuery query) {
+    public void updateQuery() {
         // 填充结果
         query.setCount(getTotal());
         query.setPages(getPages());

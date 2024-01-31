@@ -28,7 +28,7 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
 
         // 返回值类型就是MpPage
         // 分页查询
-        baseMapper.selectPage(new MpPage<>(query), wrapper).updateQuery(query);
+        baseMapper.selectPage(new MpPage<>(query), wrapper).updateQuery();
 
 
     }
