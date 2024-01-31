@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface DictTypeService extends IService<DictType> {
 
-    IPage<DictType> list(long page, long limit);
+    IPage<DictType> list(long page, long size, String keyword);
 }
 

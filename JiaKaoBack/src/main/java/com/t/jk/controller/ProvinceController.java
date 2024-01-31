@@ -3,7 +3,9 @@ package com.t.jk.controller;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.t.jk.pojo.po.DictType;
+import com.t.jk.pojo.po.Province;
 import com.t.jk.service.DictTypeService;
+import com.t.jk.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -12,19 +14,18 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Arrays;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @RestController
-@RequestMapping("/dictTypes")
-public class DictTypeController {
+@RequestMapping("/provinces")
+public class ProvinceController {
 
     @Autowired
-    public DictTypeService service;
+    private ProvinceService service;
 
     @GetMapping
     public Map<String, Object> list(long page, long size, String keyword) {
-        IPage<DictType> types = service.list(page, size, keyword);
+        IPage<Province> types = service.list(page, size, keyword);
         Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("msg", "");
@@ -51,8 +52,8 @@ public class DictTypeController {
     }
 
     @PostMapping("/save")
-    public  Map<String, Object> save(DictType dictType) {
-        if (service.saveOrUpdate(dictType)) {
+    public  Map<String, Object> save(Province province) {
+        if (service.saveOrUpdate(province)) {
             Map<String, Object> map = new HashMap<>();
             map.put("code", 0);
             map.put("msg", "保存成功");
@@ -61,5 +62,6 @@ public class DictTypeController {
             throw new RuntimeException("保存失败");
         }
     }
+
 }
 
