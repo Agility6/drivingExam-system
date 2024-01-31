@@ -3,9 +3,11 @@ package com.t.jk.service;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.t.jk.pojo.po.Province;
+import com.t.jk.pojo.query.KeywordQuery;
+import com.t.jk.pojo.query.ProvinceQuery;
 
 public interface ProvinceService extends IService<Province> {
 
-    IPage<Province> list(long page, long size, String keyword);
+    void list(ProvinceQuery query);
 }
 

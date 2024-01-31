@@ -4,6 +4,8 @@ package com.t.jk.controller;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import com.t.jk.pojo.po.DictType;
 import com.t.jk.pojo.po.Province;
+import com.t.jk.pojo.query.KeywordQuery;
+import com.t.jk.pojo.query.ProvinceQuery;
 import com.t.jk.service.DictTypeService;
 import com.t.jk.service.ProvinceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,13 +26,13 @@ public class ProvinceController {
     private ProvinceService service;
 
     @GetMapping
-    public Map<String, Object> list(long page, long size, String keyword) {
-        IPage<Province> types = service.list(page, size, keyword);
+    public Map<String, Object> list(ProvinceQuery query) {
+        service.list(query);
         Map<String, Object> map = new HashMap<>();
         map.put("code", 0);
         map.put("msg", "");
-        map.put("count", types.getTotal());
-        map.put("data", types.getRecords());
+        map.put("count", query.getCount());
+        map.put("data", query.getData());
         return map;
     }
 
