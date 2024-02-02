@@ -8,7 +8,6 @@ import com.t.jk.pojo.po.DictType;
 import com.t.jk.pojo.query.DictTypeQuery;
 import com.t.jk.service.DictTypeService;
 import org.springframework.stereotype.Service;
-import org.springframework.util.StringUtils;
 
 @Service("dictTypeService")
 public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> implements DictTypeService {

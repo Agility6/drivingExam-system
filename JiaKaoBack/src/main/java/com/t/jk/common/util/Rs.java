@@ -6,7 +6,7 @@ import com.t.jk.pojo.result.R;
 
 /**
  * ClassName: Rs
- * Description:
+ * Description: 封装返回
  *
  * @Author agility6
  * @Create 2024/1/31 16:56

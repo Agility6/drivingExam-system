@@ -19,6 +19,10 @@ import org.springframework.context.annotation.Configuration;
 @MapperScan("com.t.jk.mapper")
 public class MybatisPlusCfg {
 
+    /**
+     * 分页配置
+     * @return
+     */
     @Bean
     public MybatisPlusInterceptor mybatisPlusInterceptor() {
         MybatisPlusInterceptor interceptor = new MybatisPlusInterceptor();
@@ -30,7 +34,6 @@ public class MybatisPlusCfg {
     }
     // 无需设置
     //    @Bean
-
     //    public ConfigurationCustomizer configurationCustomizer() {
     //        return configuration -> configuration.setUseDeprecatedExecutor(false);
     //    }

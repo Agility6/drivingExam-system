@@ -21,6 +21,10 @@ public class WebCfg implements WebMvcConfigurer {
     @Autowired
     private JkProperties properties;
 
+    /**
+     * 处理跨域
+     * @param registry
+     */
     @Override
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
