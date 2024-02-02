@@ -8,11 +8,14 @@ import com.t.jk.pojo.po.DictType;
 import com.t.jk.pojo.query.DictTypeQuery;
 import com.t.jk.service.DictTypeService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("dictTypeService")
+@Transactional
 public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> implements DictTypeService {
 
     @Override
+    @Transactional(readOnly = true)
     public void list(DictTypeQuery query) {
 
         // enhance封装的方法

@@ -1,5 +1,6 @@
 package com.t.jk.common.enhance;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -11,7 +12,15 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * @Version: 1.0
  */
 public interface Jsonable {
-    default String json() throws Exception {
-        return new ObjectMapper().writeValueAsString(this);
+
+    /**
+     * 保证不会包含空的数据
+     * @return
+     * @throws Exception
+     */
+    default String jsonString () throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setDefaultPropertyInclusion(JsonInclude.Include.NON_NULL);
+        return mapper.writeValueAsString(this);
     }
 }

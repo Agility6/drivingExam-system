@@ -4,7 +4,7 @@ server:
 spring:
   datasource:
     username: root
-    password: root
+    password: tang6d
     url: jdbc:mysql://localhost:3308/jiakao?serverTimezone=GMT%2B8
 
 logging:

@@ -1,5 +1,6 @@
 package com.t.jk.common.exception;
 
+import com.t.jk.common.util.Debugs;
 import com.t.jk.common.util.Rs;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,8 +24,12 @@ public class ExceptionInterceptor {
                        HttpServletRequest request,
                        HttpServletResponse response) throws Exception {
 
+        // 设置返回数据
+        response.setContentType("application/json; charset=UTF-8");
         response.setStatus(400);
-        response.getWriter().write(Rs.error(t).json());
+        response.getWriter().write(Rs.error(t).jsonString());
+        // 如果是DEBUG阶段执行
+        Debugs.run(t::printStackTrace);
     }
 
 }

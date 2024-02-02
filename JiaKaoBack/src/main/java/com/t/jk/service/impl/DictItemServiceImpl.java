@@ -8,11 +8,14 @@ import com.t.jk.pojo.po.DictItem;
 import com.t.jk.pojo.query.DictItemQuery;
 import com.t.jk.service.DictItemService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service("dictItemService")
+@Transactional
 public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> implements DictItemService {
 
     @Override
+    @Transactional(readOnly = true)
     public void list(DictItemQuery query) {
 
         // 查询

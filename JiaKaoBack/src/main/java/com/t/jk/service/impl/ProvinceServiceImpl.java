@@ -9,12 +9,15 @@ import com.t.jk.pojo.po.Province;
 import com.t.jk.pojo.query.ProvinceQuery;
 import com.t.jk.service.ProvinceService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 @Service("provinceService")
+@Transactional
 public class ProvinceServiceImpl extends ServiceImpl<ProvinceMapper, Province> implements ProvinceService {
 
     @Override
+    @Transactional(readOnly = true)
     public void list(ProvinceQuery query) {
 
         MpQueryWrapper<Province> wrapper = new MpQueryWrapper<>();
