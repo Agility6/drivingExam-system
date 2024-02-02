@@ -21,17 +21,19 @@ public class DictTypeController extends BaseController<DictType> {
     @Autowired
     public DictTypeService service;
 
-    @GetMapping("/test")
-    public R test() {
-        DictType dictType = new DictType();
-        dictType.setName("name");
-        return Rs.ok(dictType);
-    }
-
     @GetMapping
     public R list(DictTypeQuery query) {
         service.list(query);
         return Rs.ok(query);
+    }
+
+    /**
+     * 返回列表所有数据
+     * @return
+     */
+    @GetMapping("/list")
+    public R list() {
+        return Rs.ok(service.list());
     }
 
     @Override

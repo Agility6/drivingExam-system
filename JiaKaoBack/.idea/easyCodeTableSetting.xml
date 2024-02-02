@@ -107,6 +107,56 @@
             </TableInfoDTO>
           </value>
         </entry>
+        <entry key="jiakao.plate_region">
+          <value>
+            <TableInfoDTO>
+              <option name="comment" value="带有车牌的区域" />
+              <option name="fullColumn">
+                <list>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="id" />
+                    <option name="type" value="java.lang.Integer" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="名称" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="name" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="车牌" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="plate" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="comment" value="拼音" />
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="pinyin" />
+                    <option name="type" value="java.lang.String" />
+                  </ColumnInfoDTO>
+                  <ColumnInfoDTO>
+                    <option name="custom" value="false" />
+                    <option name="ext" value="{}" />
+                    <option name="name" value="parentId" />
+                    <option name="type" value="java.lang.Integer" />
+                  </ColumnInfoDTO>
+                </list>
+              </option>
+              <option name="name" value="PlateRegion" />
+              <option name="preName" value="" />
+              <option name="saveModelName" value="JiaKaoBack" />
+              <option name="savePackageName" value="com.t.jk" />
+              <option name="savePath" value="./src/test/java/com/t/jk" />
+              <option name="templateGroupName" value="MybatisPlus_t" />
+            </TableInfoDTO>
+          </value>
+        </entry>
         <entry key="jiakao.province">
           <value>
             <TableInfoDTO>

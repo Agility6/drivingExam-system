@@ -4,6 +4,9 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
   profiles:
     active: dev
+    # 非null才返回
+  jackson:
+    default-property-inclusion: non_null
 
 mybatis-plus:
   type-aliases-package: com.t.jk.pojo
