@@ -2,6 +2,7 @@ package com.t.jk.common.util;
 
 import com.t.jk.common.exception.CommonException;
 import com.t.jk.pojo.query.PageQuery;
+import com.t.jk.pojo.result.CodeMsg;
 import com.t.jk.pojo.result.R;
 
 /**
@@ -44,7 +45,19 @@ public class Rs {
         return new R(data);
     }
 
+    public static R ok(CodeMsg msg) {
+        return new R(true, msg.getMsg());
+    }
+
     public static R ok() {
         return new R();
+    }
+
+    public static R raise(String msg) throws CommonException {
+        throw new CommonException(msg);
+    }
+
+    public static R raise(CodeMsg codeMsg) throws CommonException {
+        throw new CommonException(codeMsg);
     }
 }

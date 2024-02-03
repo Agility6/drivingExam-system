@@ -3,6 +3,7 @@ package com.t.jk.controller;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.t.jk.common.exception.CommonException;
 import com.t.jk.common.util.Rs;
+import com.t.jk.pojo.result.CodeMsg;
 import com.t.jk.pojo.result.R;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -23,18 +24,18 @@ public abstract class BaseController<T> {
     @PostMapping("/remove")
     public R remove(String id) {
         if (getService().removeByIds(Arrays.asList(id.split(",")))) {
-            return Rs.ok("删除成功");
+            return Rs.ok(CodeMsg.REMOVE_OK);
         } else {
-            throw new CommonException("删除失败");
+            return Rs.raise(CodeMsg.REMOVE_ERROR);
         }
     }
 
     @PostMapping("/save")
     public R save(T entity) {
         if (getService().saveOrUpdate(entity)) {
-            return Rs.ok("保存成功");
+            return Rs.ok(CodeMsg.SAVE_OK);
         } else {
-            throw new CommonException("保存失败");
+            return Rs.raise(CodeMsg.SAVE_ERROR);
         }
     }
 }
