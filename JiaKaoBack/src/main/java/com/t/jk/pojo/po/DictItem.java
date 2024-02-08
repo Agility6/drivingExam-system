@@ -1,5 +1,6 @@
 package com.t.jk.pojo.po;
 
+import com.t.jk.common.foreign.anno.ForeignField;
 import lombok.Data;
 
 @Data
@@ -15,6 +16,7 @@ public class DictItem {
     //是否禁用，默认0不禁用
     private Short disabled;
     //所属类型
+    @ForeignField(DictType.class)
     private Integer typeId;
 }
 
