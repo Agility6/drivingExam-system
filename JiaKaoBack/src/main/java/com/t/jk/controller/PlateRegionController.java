@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.PriorityQueue;
 
 @RestController
 @RequestMapping("/plateRegions")
@@ -22,6 +21,10 @@ public class PlateRegionController extends BaseController<PlateRegion> {
     @Autowired
     private PlateRegionService service;
 
+    @GetMapping("/regions")
+    public R listRegions() {
+        return Rs.ok(service.listRegions());
+    }
 
     @GetMapping("/provinces")
     public R listProvinces(ProvinceQuery query) {

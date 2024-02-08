@@ -5,6 +5,7 @@ import com.github.promeg.pinyinhelper.Pinyin;
 import com.t.jk.common.enhance.MpPage;
 import com.t.jk.common.enhance.MpQueryWrapper;
 import com.t.jk.mapper.PlateRegionMapper;
+import com.t.jk.pojo.dto.ProvinceDto;
 import com.t.jk.pojo.po.PlateRegion;
 import com.t.jk.pojo.query.CityQuery;
 import com.t.jk.pojo.query.ProvinceQuery;
@@ -101,6 +102,16 @@ public class PlateRegionServiceImpl extends ServiceImpl<PlateRegionMapper, Plate
         //  按照拼音排序
         wrapper.orderByAsc(PlateRegion::getPinyin);
         return baseMapper.selectList(wrapper);
+    }
+
+    @Override
+    public List<ProvinceDto> listRegions() {
+        /**
+         * 返回所有省份和城市，树状结构
+         * 可以将所有数据查询出来然后在业务层进行处理
+         * 或者在dao层进行处理自定义查询
+         */
+        return baseMapper.selectRegions();
     }
 }
 
