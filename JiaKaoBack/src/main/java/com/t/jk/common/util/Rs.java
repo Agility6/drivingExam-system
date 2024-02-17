@@ -4,6 +4,14 @@ import com.t.jk.common.exception.CommonException;
 import com.t.jk.pojo.query.PageQuery;
 import com.t.jk.pojo.result.CodeMsg;
 import com.t.jk.pojo.result.R;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindException;
+import org.springframework.validation.ObjectError;
+
+import javax.validation.ConstraintViolation;
+import javax.validation.ConstraintViolationException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * ClassName: Rs
@@ -21,13 +29,34 @@ public class Rs {
         return new R(false, msg);
     }
 
+    public static R error() {
+        return new R(false);
+    }
+
     public static R error(Throwable t) {
         // 如果错误类型是CommonException
         if (t instanceof CommonException) {
-            CommonException e = (CommonException) t;
-            return new R(e.getCode(), e.getMessage());
+            CommonException ce = (CommonException) t;
+            return new R(ce.getCode(), ce.getMessage());
+        } else if (t instanceof BindException) {
+            BindException be = (BindException) t;
+            List<ObjectError> errors = be.getBindingResult().getAllErrors();
+
+            // 函数式编程的方法
+            List<String> defautMsgs = errors.stream()
+                    .map(ObjectError::getDefaultMessage)
+                    .collect(Collectors.toList());
+            String msg = StringUtils.collectionToDelimitedString(defautMsgs, ", ");
+            return error(msg);
+        } else if (t instanceof ConstraintViolationException) {
+            ConstraintViolationException cve = (ConstraintViolationException) t;
+            List<String> msgs = cve.getConstraintViolations()
+                    .stream().map(ConstraintViolation::getMessage)
+                    .collect(Collectors.toList());
+            String msg = StringUtils.collectionToDelimitedString(msgs, ", ");
+            return error(msg);
         } else {
-            return error(t.getMessage());
+            return error();
         }
     }
 

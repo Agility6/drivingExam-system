@@ -7,9 +7,14 @@ spring:
     # 非null才返回
   jackson:
     default-property-inclusion: non_null
+  mvc:
+    path match:
+      matching-strategy: ant_path_matcher # springboot2.6之后使用swagger报错
+
 
 mybatis-plus:
   type-aliases-package: com.t.jk.pojo
   global-config:
     db-config:
       id-type: auto
+

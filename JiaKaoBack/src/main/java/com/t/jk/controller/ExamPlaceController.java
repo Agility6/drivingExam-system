@@ -7,6 +7,7 @@ import com.t.jk.pojo.po.ExamPlace;
 import com.t.jk.pojo.query.ExamPlaceQuery;
 import com.t.jk.pojo.result.R;
 import com.t.jk.service.ExamPlaceService;
+import io.swagger.annotations.Api;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/examPlaces")
+@Api(tags = "考场")
 public class ExamPlaceController extends BaseController<ExamPlace> {
 
     @Autowired
