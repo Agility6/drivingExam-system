@@ -1,7 +1,11 @@
 package com.t.jk.common.enhance;
 
 import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
-import com.t.jk.pojo.query.PageQuery;
+import com.t.jk.common.util.Streams;
+import com.t.jk.pojo.vo.PageVo;
+import com.t.jk.pojo.vo.req.page.PageReqVo;
+
+import java.util.function.Function;
 
 /**
  * ClassName: MpPage
@@ -13,24 +17,27 @@ import com.t.jk.pojo.query.PageQuery;
  */
 public class MpPage<T> extends Page<T> {
 
-    private PageQuery query;
+    private final PageReqVo reqVo;
 
-    public MpPage(PageQuery query) {
-        super(query.getPage(), query.getSize());
-        this.query = query;
+    public MpPage(PageReqVo reqVo) {
+        super(reqVo.getPage(), reqVo.getSize());
+        this.reqVo = reqVo;
     }
 
     /**
      * 查询完成后更新
+     *
+     * @return
      */
-    public void updateQuery() {
-        // 填充结果
-        query.setCount(getTotal());
-        query.setPages(getPages());
-        query.setData(getRecords());
-        // 客户端传递值可能不规范myBatisPlus会纠正
-        query.setPage(getCurrent());
-        query.setSize(getSize());
+    public <R> PageVo<R> buildVo(Function<T, R> function) {
+        reqVo.setPage(getCurrent());
+        reqVo.setSize(getSize());
+
+        PageVo<R> pageVo = new PageVo<>();
+        pageVo.setCount(getTotal());
+        pageVo.setPages(getPages());
+        pageVo.setData(Streams.map(getRecords(), function));
+        return pageVo;
     }
 
 }

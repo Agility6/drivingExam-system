@@ -1,10 +1,11 @@
-package com.t.jk.pojo.query;
+package com.t.jk.pojo.vo.req.page;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 /**
- * ClassName: CityQuery
+ * ClassName: CityPageReqVo
  * Description:
  *
  * @Author agility6
@@ -13,6 +14,7 @@ import lombok.EqualsAndHashCode;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class CityQuery extends KeywordQuery {
+public class CityPageReqVo extends KeywordPageReqVo {
+    @ApiModelProperty("身份id")
     private Integer parentId;
 }

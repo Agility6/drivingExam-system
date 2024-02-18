@@ -1,21 +1,23 @@
 package com.t.jk.service;
 
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.t.jk.pojo.dto.ProvinceDto;
+import com.t.jk.pojo.vo.PageVo;
+import com.t.jk.pojo.vo.list.PlateRegionVo;
+import com.t.jk.pojo.vo.list.ProvinceVo;
 import com.t.jk.pojo.po.PlateRegion;
-import com.t.jk.pojo.query.CityQuery;
-import com.t.jk.pojo.query.ProvinceQuery;
+import com.t.jk.pojo.vo.req.page.CityPageReqVo;
+import com.t.jk.pojo.vo.req.page.ProvincePageReqVo;
 
 import java.util.List;
 
 public interface PlateRegionService extends IService<PlateRegion> {
 
-    void listProvinces(ProvinceQuery query);
+    PageVo<PlateRegionVo> listProvinces(ProvincePageReqVo query);
 
-    void listCities(CityQuery query);
+    PageVo<PlateRegionVo> listCities(CityPageReqVo query);
 
-    List<PlateRegion> listProvinces();
+    List<PlateRegionVo> listProvinces();
 
-    List<ProvinceDto> listRegions();
+    List<ProvinceVo> listRegions();
 }
 

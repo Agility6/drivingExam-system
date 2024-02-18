@@ -1,13 +1,11 @@
-package com.t.jk.pojo.query;
+package com.t.jk.pojo.vo.req.page;
 
-import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
-import java.util.List;
 
 /**
- * ClassName: PageQuery
+ * ClassName: PageReqVo
  * Description:
  *
  * @Author agility6
@@ -16,7 +14,7 @@ import java.util.List;
  */
 
 @Data
-public class PageQuery {
+public class PageReqVo {
 
     private static final int DEFAULT_SIZE = 10;
 
@@ -24,23 +22,6 @@ public class PageQuery {
     private long page;
     @ApiModelProperty("每页的大小")
     private long size;
-
-    /**
-     * 当前页的数据
-     */
-    @ApiModelProperty(hidden = true)
-    private List<?> data;
-
-    /**
-     * 总数
-     */
-    @ApiModelProperty(hidden = true)
-    private long count;
-    /**
-     * 总页数
-     */
-    @ApiModelProperty(hidden = true)
-    private long pages;
 
     /**
      * page最小取1

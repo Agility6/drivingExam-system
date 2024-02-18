@@ -3,9 +3,12 @@ package com.t.jk.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.t.jk.common.enhance.MpPage;
 import com.t.jk.common.enhance.MpQueryWrapper;
+import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.mapper.DictTypeMapper;
 import com.t.jk.pojo.po.DictType;
-import com.t.jk.pojo.query.DictTypeQuery;
+import com.t.jk.pojo.vo.PageVo;
+import com.t.jk.pojo.vo.list.DictTypeVo;
+import com.t.jk.pojo.vo.req.page.DictTypePageReqVo;
 import com.t.jk.service.DictTypeService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -16,7 +19,7 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
 
     @Override
     @Transactional(readOnly = true)
-    public void list(DictTypeQuery query) {
+    public PageVo<DictTypeVo> list(DictTypePageReqVo query) {
 
         // enhance封装的方法
         // MpPage<DictType> page = new MpPage<>(query);
@@ -30,8 +33,9 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
 
         // 返回值类型就是MpPage
         // 分页查询
-        baseMapper.selectPage(new MpPage<>(query), wrapper).updateQuery();
-
+        return baseMapper
+                .selectPage(new MpPage<>(query), wrapper)
+                .buildVo(MapStructs.INSTANCE::po2vo);
 
     }
 }

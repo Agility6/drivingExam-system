@@ -1,9 +1,11 @@
 package com.t.jk.common.util;
 
 import com.t.jk.common.exception.CommonException;
-import com.t.jk.pojo.query.PageQuery;
+import com.t.jk.pojo.vo.DataJsonVo;
+import com.t.jk.pojo.vo.JsonVo;
 import com.t.jk.pojo.result.CodeMsg;
-import com.t.jk.pojo.result.R;
+import com.t.jk.pojo.vo.PageJsonVo;
+import com.t.jk.pojo.vo.PageVo;
 import org.springframework.util.StringUtils;
 import org.springframework.validation.BindException;
 import org.springframework.validation.ObjectError;
@@ -14,30 +16,28 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 /**
- * ClassName: Rs
+ * ClassName: JsonVos
  * Description: 封装返回
  *
  * @Author agility6
  * @Create 2024/1/31 16:56
  * @Version: 1.0
  */
-public class Rs {
+public class JsonVos {
 
-    private static final String K_COUNT = "count";
-
-    public static R error(String msg) {
-        return new R(false, msg);
+    public static JsonVo error(String msg) {
+        return new JsonVo(false, msg);
     }
 
-    public static R error() {
-        return new R(false);
+    public static JsonVo error() {
+        return new JsonVo(false);
     }
 
-    public static R error(Throwable t) {
+    public static JsonVo error(Throwable t) {
         // 如果错误类型是CommonException
         if (t instanceof CommonException) {
             CommonException ce = (CommonException) t;
-            return new R(ce.getCode(), ce.getMessage());
+            return new JsonVo(ce.getCode(), ce.getMessage());
         } else if (t instanceof BindException) {
             BindException be = (BindException) t;
             List<ObjectError> errors = be.getBindingResult().getAllErrors();
@@ -60,33 +60,34 @@ public class Rs {
         }
     }
 
-    public static R ok(PageQuery query) {
-       R r = new R(query.getData());
-       r.put(K_COUNT, query.getCount());
-       return r;
+    public static JsonVo ok(CodeMsg msg) {
+        return new JsonVo(msg);
     }
 
-    public static R ok(String msg) {
-        return new R(true, msg);
+    public static JsonVo ok(String msg) {
+        return new JsonVo(true, msg);
     }
 
-    public static R ok(Object data) {
-        return new R(data);
+    public static <T>DataJsonVo<T> ok(T data) {
+        return new DataJsonVo<>(data);
     }
 
-    public static R ok(CodeMsg msg) {
-        return new R(true, msg.getMsg());
+    public static <T>PageJsonVo<T> ok(PageVo<T> pageVo) {
+        PageJsonVo<T> pageJsonVo = new PageJsonVo<>();
+        pageJsonVo.setCount(pageVo.getCount());
+        pageJsonVo.setData(pageVo.getData());
+        return pageJsonVo;
     }
 
-    public static R ok() {
-        return new R();
+    public static JsonVo ok() {
+        return new JsonVo();
     }
 
-    public static R raise(String msg) throws CommonException {
+    public static <T> T raise(String msg) throws CommonException {
         throw new CommonException(msg);
     }
 
-    public static R raise(CodeMsg codeMsg) throws CommonException {
+    public static <T> T raise(CodeMsg codeMsg) throws CommonException {
         throw new CommonException(codeMsg);
     }
 }

@@ -1,7 +1,7 @@
 package com.t.jk.common.exception;
 
-import com.t.jk.common.util.Rs;
-import com.t.jk.pojo.result.R;
+import com.t.jk.common.util.JsonVos;
+import com.t.jk.pojo.vo.JsonVo;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -21,9 +21,9 @@ public class ExceptionInterceptor {
 
     @ExceptionHandler(Throwable.class)
     @ResponseStatus(code = HttpStatus.BAD_REQUEST)
-    public R handle(Throwable t)  {
+    public JsonVo handle(Throwable t)  {
         log.error("null", t);
-        return Rs.error(t);
+        return JsonVos.error(t);
     }
 
 //    @ExceptionHandler(Throwable.class)

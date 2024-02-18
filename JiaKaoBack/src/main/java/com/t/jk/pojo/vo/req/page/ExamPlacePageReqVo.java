@@ -1,12 +1,11 @@
-package com.t.jk.pojo.query;
+package com.t.jk.pojo.vo.req.page;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
-import javax.annotation.Priority;
-
 /**
- * ClassName: ExamPlaceQuery
+ * ClassName: ExamPlacePageReqVo
  * Description:
  *
  * @Author agility6
@@ -15,7 +14,11 @@ import javax.annotation.Priority;
  */
 @EqualsAndHashCode(callSuper = true)
 @Data
-public class ExamPlaceQuery extends KeywordQuery {
+public class ExamPlacePageReqVo extends KeywordPageReqVo {
+
+    @ApiModelProperty("身份id")
     private Integer provinceId;
+
+    @ApiModelProperty("城市id")
     private Integer cityId;
 }

@@ -3,12 +3,18 @@ package com.t.jk.service.impl;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.t.jk.common.enhance.MpPage;
 import com.t.jk.common.enhance.MpQueryWrapper;
+import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.mapper.ExamPlaceMapper;
+import com.t.jk.pojo.vo.PageVo;
+import com.t.jk.pojo.vo.list.ExamPlaceVo;
+import com.t.jk.pojo.vo.list.ProvinceVo;
 import com.t.jk.pojo.po.ExamPlace;
-import com.t.jk.pojo.query.ExamPlaceQuery;
+import com.t.jk.pojo.vo.req.page.ExamPlacePageReqVo;
 import com.t.jk.service.ExamPlaceService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service("examPlaceService")
 @Transactional
@@ -16,7 +22,7 @@ public class ExamPlaceServiceImpl extends ServiceImpl<ExamPlaceMapper, ExamPlace
 
     @Override
     @Transactional(readOnly = true)
-    public void list(ExamPlaceQuery query) {
+    public PageVo<ExamPlaceVo> list(ExamPlacePageReqVo query) {
 
         MpQueryWrapper<ExamPlace> wrapper = new MpQueryWrapper<>();
         wrapper.like(query.getKeyword(), ExamPlace::getName, ExamPlace::getAddress);
@@ -35,7 +41,15 @@ public class ExamPlaceServiceImpl extends ServiceImpl<ExamPlaceMapper, ExamPlace
 
         wrapper.orderByDesc(ExamPlace::getId);
 
-        baseMapper.selectPage(new MpPage<>(query), wrapper).updateQuery();
+        return baseMapper
+                .selectPage(new MpPage<>(query), wrapper)
+                .buildVo(MapStructs.INSTANCE::po2vo);
+    }
+
+    @Override
+    public List<ProvinceVo> listRegionExamPlaces() {
+        // 交给数据库实现
+        return baseMapper.selectRegionExamPlaces();
     }
 }
 
