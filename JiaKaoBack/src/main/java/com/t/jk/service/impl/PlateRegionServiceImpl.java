@@ -113,6 +113,7 @@ public class PlateRegionServiceImpl extends ServiceImpl<PlateRegionMapper, Plate
     }
 
     @Override
+    @Transactional(readOnly = true)
     public List<ProvinceVo> listRegions() {
         /**
          * 返回所有省份和城市，树状结构
