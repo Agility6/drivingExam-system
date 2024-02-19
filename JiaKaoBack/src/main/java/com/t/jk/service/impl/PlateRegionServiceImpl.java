@@ -2,8 +2,8 @@ package com.t.jk.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.promeg.pinyinhelper.Pinyin;
+import com.t.jk.common.enhance.MpLambdaQueryWrapper;
 import com.t.jk.common.enhance.MpPage;
-import com.t.jk.common.enhance.MpQueryWrapper;
 import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.common.util.Streams;
 import com.t.jk.mapper.PlateRegionMapper;
@@ -54,7 +54,7 @@ public class PlateRegionServiceImpl extends ServiceImpl<PlateRegionMapper, Plate
     @Transactional(readOnly = true)
     public PageVo<PlateRegionVo> listProvinces(ProvincePageReqVo query) {
 
-        MpQueryWrapper<PlateRegion> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<PlateRegion> wrapper = new MpLambdaQueryWrapper<>();
 
         /**
          * 只需要查找名称、车牌、拼音
@@ -78,7 +78,7 @@ public class PlateRegionServiceImpl extends ServiceImpl<PlateRegionMapper, Plate
     @Transactional(readOnly = true)
     public PageVo<PlateRegionVo> listCities(CityPageReqVo query) {
 
-        MpQueryWrapper<PlateRegion> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<PlateRegion> wrapper = new MpLambdaQueryWrapper<>();
 
         wrapper.like(query.getKeyword(),
                 PlateRegion::getName,
@@ -105,7 +105,7 @@ public class PlateRegionServiceImpl extends ServiceImpl<PlateRegionMapper, Plate
     @Transactional(readOnly = true)
     public List<PlateRegionVo> listProvinces() {
 
-        MpQueryWrapper<PlateRegion> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<PlateRegion> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.eq(PlateRegion::getParentId, 0);
         //  按照拼音排序
         wrapper.orderByAsc(PlateRegion::getPinyin);

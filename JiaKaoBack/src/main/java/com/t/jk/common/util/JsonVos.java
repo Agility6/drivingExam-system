@@ -72,7 +72,7 @@ public class JsonVos {
         return new DataJsonVo<>(data);
     }
 
-    public static <T>PageJsonVo<T> ok(PageVo<T> pageVo) {
+    public static <T> PageJsonVo<T> ok(PageVo<T> pageVo) {
         PageJsonVo<T> pageJsonVo = new PageJsonVo<>();
         pageJsonVo.setCount(pageVo.getCount());
         pageJsonVo.setData(pageVo.getData());

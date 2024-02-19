@@ -1,8 +1,8 @@
 package com.t.jk.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.t.jk.common.enhance.MpLambdaQueryWrapper;
 import com.t.jk.common.enhance.MpPage;
-import com.t.jk.common.enhance.MpQueryWrapper;
 import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.mapper.DictItemMapper;
 import com.t.jk.pojo.po.DictItem;
@@ -21,7 +21,7 @@ public class DictItemServiceImpl extends ServiceImpl<DictItemMapper, DictItem> i
     @Transactional(readOnly = true)
     public PageVo<DictItemVo> list(DictItemPageReqVo query) {
         // 查询
-        MpQueryWrapper<DictItem> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<DictItem> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.like(query.getKeyword(), DictItem::getName, DictItem::getValue);
         Integer typeId = query.getTypeId();
         if (typeId != null && typeId > 0) {

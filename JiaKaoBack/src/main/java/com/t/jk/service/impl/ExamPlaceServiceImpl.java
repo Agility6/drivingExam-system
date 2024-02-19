@@ -1,8 +1,8 @@
 package com.t.jk.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import com.t.jk.common.enhance.MpLambdaQueryWrapper;
 import com.t.jk.common.enhance.MpPage;
-import com.t.jk.common.enhance.MpQueryWrapper;
 import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.mapper.ExamPlaceMapper;
 import com.t.jk.pojo.vo.PageVo;
@@ -24,7 +24,7 @@ public class ExamPlaceServiceImpl extends ServiceImpl<ExamPlaceMapper, ExamPlace
     @Transactional(readOnly = true)
     public PageVo<ExamPlaceVo> list(ExamPlacePageReqVo query) {
 
-        MpQueryWrapper<ExamPlace> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<ExamPlace> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.like(query.getKeyword(), ExamPlace::getName, ExamPlace::getAddress);
 
         /**

@@ -2,7 +2,7 @@ package com.t.jk.service.impl;
 
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.t.jk.common.enhance.MpPage;
-import com.t.jk.common.enhance.MpQueryWrapper;
+import com.t.jk.common.enhance.MpLambdaQueryWrapper;
 import com.t.jk.common.mapStruct.MapStructs;
 import com.t.jk.mapper.DictTypeMapper;
 import com.t.jk.pojo.po.DictType;
@@ -25,7 +25,7 @@ public class DictTypeServiceImpl extends ServiceImpl<DictTypeMapper, DictType> i
         // MpPage<DictType> page = new MpPage<>(query);
 
         // 查询条件
-        MpQueryWrapper<DictType> wrapper = new MpQueryWrapper<>();
+        MpLambdaQueryWrapper<DictType> wrapper = new MpLambdaQueryWrapper<>();
         wrapper.like(query.getKeyword(), DictType::getName, DictType::getValue, DictType::getIntro);
 
         // 按照id降序

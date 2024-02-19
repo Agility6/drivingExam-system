@@ -1,29 +1,24 @@
 package com.t.jk.common.enhance;
 
-import com.baomidou.mybatisplus.core.conditions.query.LambdaQueryWrapper;
-import com.baomidou.mybatisplus.core.toolkit.support.SFunction;
+import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 
 /**
  * ClassName: MpQueryWrapper
- * Description: 对LambdaQueryWrapper进行封装
+ * Description:
  *
  * @Author agility6
  * @Create 2024/1/31 15:23
  * @Version: 1.0
  */
-public class MpQueryWrapper<T> extends LambdaQueryWrapper<T> {
+public class MpQueryWrapper<T> extends QueryWrapper<T> {
 
-    @SafeVarargs
-    public final MpQueryWrapper<T> like(Object val, SFunction<T, ?>... funcs) {
-
-        // 判空
+    public final MpQueryWrapper<T> like(Object val, String... columns) {
         if (val == null) return this;
         String str = val.toString();
-        if (str.length() == 0) return this;
-
+        if (str.isEmpty()) return this;
         return (MpQueryWrapper<T>) nested((w) -> {
-            for (SFunction<T, ?> func : funcs) {
-                w.like(func, str).or();
+            for (String column : columns) {
+                w.like(column, str).or();
             }
         });
     }
