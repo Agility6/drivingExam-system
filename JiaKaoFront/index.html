@@ -105,9 +105,7 @@
     layui.use(['layer', 'miniAdmin', 'form', 'table', 'treeTable', 'transfer'], () => {
         window.jQuery = layui.$
         window.$ = layui.$
-
-        Commons.baseUrl = 'http://localhost:8888/'
-
+        
         Page.adminOptions = {
             iniUrl: "api/init.json",    // 初始化接口
             clearUrl: "api/clear.json", // 缓存清理接口
